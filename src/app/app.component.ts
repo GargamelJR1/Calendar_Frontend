@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CalendarHeaderComponent } from './calendar-header/calendar-header.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,10 @@ import { CalendarComponent } from './calendar/calendar.component';
   imports: [
     RouterOutlet,
     CalendarHeaderComponent,
-    CalendarComponent
+    CalendarComponent,
+    RouterModule,
+    RouterLink, 
+    RouterLinkActive
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

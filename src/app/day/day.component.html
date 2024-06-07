@@ -1,1 +1,6 @@
-<p>day works!</p>
+<div (click)="activateTaks()" class="day-box">
+    <p>{{state}}</p>
+    <div *ngIf="status">
+        <app-task></app-task>
+    </div>
+</div>

@@ -1,9 +1,9 @@
-<div >
-    <h3>Task Title</h3>
-    <p>Task Description</p>
+<div class="task-box">
+    <h3>{{task.name}}</h3>
+    <p>{{task.description}}</p>
     <!-- task tags components -->
-    <p>priority</p>
-    <p>Deadline: xx-xx-xxxx xx:xx</p>
-    <p>Complated:  xx-xx-xxxx xx:xx</p>
-
+    <p>{{task.priority}}</p>
+    <p>Deadline: {{task.deadline.toDateString()}}</p>
+    <p>Complated:  {{task.completeDate.toDateString()}}</p>
+    <p>Created At: {{task.createdAt.toDateString()}}</p>
 </div>

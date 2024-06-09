@@ -11,5 +11,6 @@ import { GridComponent } from '../grid/grid.component';
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent {
-
+  year:number = 2026;
+  month: number = 1;
 }

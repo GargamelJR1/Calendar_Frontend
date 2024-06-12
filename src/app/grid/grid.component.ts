@@ -1,11 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef } from '@angular/core';
 import { DayComponent } from '../day/day.component';
+import { CommonModule, NgFor } from '@angular/common';
+import { Day } from '../day';
 
 
 @Component({
   selector: 'app-grid',
   standalone: true,
-  imports: [DayComponent],
+  imports: [DayComponent,
+    CommonModule,
+    NgFor
+  ],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
 })
@@ -16,15 +21,21 @@ export class GridComponent {
   firstOfMonth: Date = new Date();
   lastOfMonth: Date =  new Date();
 
+  month: Day [][];
   
-  month: Date [][] = [];
+  constructor(private changeDetection: ChangeDetectorRef){
+    this.month = [];
+  }
   
-  constructor(){}
+  ngOnInit() {
+    this.firstOfMonth = new Date(this.year, this.monthNumber, 1);
+    this.fillMonth();
+
+  }
   
   weeks: number = 0;
   
   getNumberOfWeeks() {
-    this.firstOfMonth = new Date(this.year, this.monthNumber, 1);
     let startDay = this.firstOfMonth.getDay();
 
     //Adjust so monday is the first day os the week
@@ -42,7 +53,7 @@ export class GridComponent {
 
   calculateOffset()
   {
-    let offset = 0;
+    let offset:number = 0;
     const firstDay = this.firstOfMonth.getDay();
     if(firstDay > 1)
       {
@@ -53,18 +64,97 @@ export class GridComponent {
       {
         offset = 6;
       }
+      console.log(offset);
       return offset;
   }
 
   fillMonth()
   {
-    let week: Date[] = [];
     const startingOffset = this.calculateOffset();
-    for(let i:number = startingOffset; i > 0 ; i-- )
+    const weeksNo = this.getNumberOfWeeks();
+    for(let i:number = 0; i < weeksNo ; i++ )
       {
-        week[i] = new Date(this.year, this.monthNumber, i*(-1));
+        let week: Day [] = [];
+        for(let j:number = 0; j < 7; j++)
+          {
+            let tmpDate = new Date(this.year, this.monthNumber,
+              (i * 7) + j - startingOffset);
+            week.push({
+              day: tmpDate.getDate(),
+              date: tmpDate
+            });
+            }
+        this.month[i] = week;
       }
-
+    // for(let i = 0; i < weeksNo * 7; i++)
+    //   {
+    //     let tmpDate = new Date(this.year, this.monthNumber,
+    //                 i - startingOffset);
+    //               this.month3.push({
+    //                 day: tmpDate.getDate(),
+    //                 date: tmpDate});
+    //   }
+      // this.changeDetection.detectChanges();
   }
+
+
+  month2: Day[][] = [
+    [{
+      day: 28,
+      date: new Date(this.year, this.monthNumber, -3)
+    },
+    {
+      day: 29,
+      date: new Date(this.year, this.monthNumber, -2)
+    },
+    {
+      day: 30,
+      date: new Date(this.year, this.monthNumber, -1)
+    },
+    {
+      day: 1,
+      date: new Date(this.year, this.monthNumber, 0)
+    },
+    {
+      day: 2,
+      date: new Date(this.year, this.monthNumber, 1)
+    },
+    {
+      day: 3,
+      date: new Date(this.year, this.monthNumber, 2)
+    },
+    {
+      day: 4,
+      date: new Date(this.year, this.monthNumber, 3)
+    }],
+    [{
+      day: 28,
+      date: new Date(this.year, this.monthNumber, -3)
+    },
+    {
+      day: 29,
+      date: new Date(this.year, this.monthNumber, -2)
+    },
+    {
+      day: 30,
+      date: new Date(this.year, this.monthNumber, -1)
+    },
+    {
+      day: 1,
+      date: new Date(this.year, this.monthNumber, 0)
+    },
+    {
+      day: 2,
+      date: new Date(this.year, this.monthNumber, 1)
+    },
+    {
+      day: 3,
+      date: new Date(this.year, this.monthNumber, 2)
+    },
+    {
+      day: 4,
+      date: new Date(this.year, this.monthNumber, 3)
+    }],
+  ]
 
 }

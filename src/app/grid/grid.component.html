@@ -24,27 +24,12 @@
             </div>
 
         </div>
+    </div>
+    <div class="row" *ngFor="let week of month">
+        <hr>
+        <div class="col" *ngFor="let day of week">
+            <app-day  [day]="day"></app-day>
         </div>
-        <div class="row">
-            <hr>
-                
-            <div class="col" >
-                <app-day [day]="12"></app-day>
-                <p>Number of weeks: {{weeks}}</p>
-                <p>{{firstOfMonth.toDateString()}}</p>
-
-            </div>
-
-            <div class="starting-offset"
-            *ngFor="let x of month">
-
-            </div>
-        </div>
-
+        <br>
+    </div>
 </div>
-<br>
-<hr>
-<br>
-<hr>
-<br>
-<hr>

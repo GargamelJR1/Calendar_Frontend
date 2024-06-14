@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { GridComponent } from '../grid/grid.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -19,8 +19,10 @@ import {MatDividerModule} from '@angular/material/divider';
 export class CalendarComponent {
   
   
-  year:number = 2024;
-  month: number = 0;
+  year: number = new Date().getFullYear();
+  month: number = new Date().getMonth();
+
+  // constructor(private cdr: ChangeDetectorRef) {}
   
   incMonth()
   {
@@ -33,6 +35,20 @@ export class CalendarComponent {
         this.month++;
 
       }
+      // this.cdr.detectChanges();
+  }
+  decMonth()
+  {
+    if(this.month==0)
+      {
+        this.year--;
+        this.month=11;
+      }
+      else{
+        this.month--;
+
+      }
+      // this.cdr.detectChanges();
   }
 
   getMonth()

@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, SimpleChanges, OnChanges } from '@angular/core';
 import { DayComponent } from '../day/day.component';
 import { CommonModule, NgFor } from '@angular/common';
 import { Day } from '../day';
@@ -14,7 +14,7 @@ import { Day } from '../day';
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
 })
-export class GridComponent {
+export class GridComponent implements OnChanges{
   @Input() year!: number;
   @Input() monthNumber!: number;
 
@@ -25,6 +25,13 @@ export class GridComponent {
   
   constructor(private changeDetection: ChangeDetectorRef){
     this.month = [];
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['year'] || changes['monthNumber']) {
+      this.firstOfMonth = new Date(this.year, this.monthNumber, 1); // Poprawka: miesiące w JS są zero-indeksowane
+      this.fillMonth();
+    }
   }
   
   ngOnInit() {

@@ -65,7 +65,8 @@ export class GridComponent {
         offset = 6;
       }
       console.log(offset);
-      return offset;
+      //QUICK FIX this will bite your ass
+      return offset-1;
   }
 
   fillMonth()

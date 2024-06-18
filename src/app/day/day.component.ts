@@ -1,4 +1,4 @@
-import { Component, Input, } from '@angular/core';
+import { Component, HostListener, Input, } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
 import { CommonModule, NgFor } from '@angular/common';
 import { Task } from '../task'
@@ -18,21 +18,26 @@ export class DayComponent {
   @Input() tasks?: Task[];
   status: boolean = false;
   state: string = 'visible';
-  
-  
-  constructor() {}
+  isHovering: boolean = false;
 
-  activateTaks() {
+  constructor() { }
+
+  activateTask() {
     this.status = !this.status;
-    if(this.status)
-    {
+    if (this.status) {
       this.state = 'visible';
     }
-    else
-    {
-     this.state = "invisible"; 
+    else {
+      this.state = "invisible";
     }
   }
 
+  @HostListener('mouseenter') onMouseEnter() {
+    this.isHovering = true;
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.isHovering = false;
+  }
 }
 

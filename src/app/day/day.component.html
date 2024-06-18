@@ -1,13 +1,15 @@
-<div class="container-fluid mx-0 px-0 ">
-    <div (click)="activateTaks()" class="day-box">
+<div class="container-fluid mx-0 px-0" [class.bg-secondary]="isHovering"
+    [ngStyle]="{'border-radius': isHovering ? '5px' : '0', 'color': isHovering ? 'white' : 'initial'}"
+    style="margin-top: -10px; margin-bottom: 5px;">
+    <div (click)="activateTask()" class="day-box">
         <!-- <p>{{state}}</p> -->
         <div *ngIf="status">
             <app-task></app-task>
         </div>
-        <div *ngFor="let taks of tasks">
+        <div *ngFor="let task of tasks" style="padding-left: 5px; padding-top: 3px;">
             <span class="badge rounded-pill bg-primary">Task</span>
         </div>
-        <div class="text-end">{{day.day}}</div>
+        <div class="text-end"
+            style="padding-right: 5px; font-size: medium;">{{day.day}}</div>
     </div>
-
 </div>

@@ -17,7 +17,7 @@ export class DayComponent {
   @Input() day!: Day;
   @Input() tasks?: Task[];
   status: boolean = false;
-  state: string = 'viseable';
+  state: string = 'visible';
   
   
   constructor() {}
@@ -26,11 +26,11 @@ export class DayComponent {
     this.status = !this.status;
     if(this.status)
     {
-      this.state = 'visable';
+      this.state = 'visible';
     }
     else
     {
-     this.state = "inviable"; 
+     this.state = "invisible"; 
     }
   }
 

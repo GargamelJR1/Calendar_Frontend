@@ -1,16 +1,18 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-10 align-items-center">
-            <div class="row d-inline-flex">
-                <div class="col ">
-                    <mat-icon (click)="decMonth()">chevron_left</mat-icon>
-                    </div>
-                    <div class="col "> 
-                        <h1 class="text-center">{{getMonth()}}</h1>
-                    </div>
-                    <div class="col">                
-                        <mat-icon (click)="incMonth()">chevron_right</mat-icon>
-                    </div>
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <mat-icon (click)="decMonth()"
+                        class="chevron">chevron_left</mat-icon>
+                </div>
+                <div class="col-md-auto">
+                    <h1 class="text-center">{{getMonth().toUpperCase()}}</h1>
+                </div>
+                <div class="col-md-auto">
+                    <mat-icon (click)="incMonth()"
+                        class="chevron">chevron_right</mat-icon>
+                </div>
             </div>
             <app-grid [year]="year" [monthNumber]="month"></app-grid>
         </div>

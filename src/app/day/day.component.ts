@@ -15,10 +15,11 @@ import { Day } from '../day';
 })
 export class DayComponent {
   @Input() day!: Day;
+  @Input() tasks?: Task[];
   status: boolean = false;
   state: string = 'viseable';
-  tasks: Task[] = [];
-
+  
+  
   constructor() {}
 
   activateTaks() {
@@ -32,4 +33,6 @@ export class DayComponent {
      this.state = "inviable"; 
     }
   }
+
 }
+

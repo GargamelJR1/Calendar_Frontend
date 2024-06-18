@@ -28,7 +28,7 @@
     <div class="row" *ngFor="let week of month">
         <hr>
         <div class="col" *ngFor="let day of week">
-            <app-day  [day]="day"></app-day>
+            <app-day  [day]="day" [tasks]="tasks"></app-day>
         </div>
         <br>
     </div>

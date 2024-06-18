@@ -4,11 +4,11 @@ export interface Task {
     id: number;
     name: string;
     description: string;
-    tags: number[];
+    tags?: number[];
     priority: string;
     complated: boolean;
     deadline: Date;
-    completeDate: Date;
-    createdAt: Date;
-    master: number;
+    completeDate?: Date;
+    createdAt?: Date;
+    master?: number;
 }

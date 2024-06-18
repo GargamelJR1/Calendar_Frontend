@@ -2,6 +2,7 @@ import { Component, Input, ChangeDetectorRef, SimpleChanges, OnChanges } from '@
 import { DayComponent } from '../day/day.component';
 import { CommonModule, NgFor } from '@angular/common';
 import { Day } from '../day';
+import { Task } from '../task';
 
 
 @Component({
@@ -106,63 +107,48 @@ export class GridComponent implements OnChanges{
   }
 
 
-  month2: Day[][] = [
-    [{
-      day: 28,
-      date: new Date(this.year, this.monthNumber, -3)
+  tasks: Task[] = [
+    {
+      id: 1,
+      name: "Test task1",
+      description: "This is the test taks no1",
+      tags: undefined,
+      priority: "high",
+      complated: false,
+      deadline: new Date(),
+      completeDate: undefined,
+      createdAt: undefined,
+      master: undefined
     },
     {
-      day: 29,
-      date: new Date(this.year, this.monthNumber, -2)
-    },
-    {
-      day: 30,
-      date: new Date(this.year, this.monthNumber, -1)
-    },
-    {
-      day: 1,
-      date: new Date(this.year, this.monthNumber, 0)
-    },
-    {
-      day: 2,
-      date: new Date(this.year, this.monthNumber, 1)
-    },
-    {
-      day: 3,
-      date: new Date(this.year, this.monthNumber, 2)
-    },
-    {
-      day: 4,
-      date: new Date(this.year, this.monthNumber, 3)
-    }],
-    [{
-      day: 28,
-      date: new Date(this.year, this.monthNumber, -3)
-    },
-    {
-      day: 29,
-      date: new Date(this.year, this.monthNumber, -2)
-    },
-    {
-      day: 30,
-      date: new Date(this.year, this.monthNumber, -1)
-    },
-    {
-      day: 1,
-      date: new Date(this.year, this.monthNumber, 0)
-    },
-    {
-      day: 2,
-      date: new Date(this.year, this.monthNumber, 1)
-    },
-    {
-      day: 3,
-      date: new Date(this.year, this.monthNumber, 2)
-    },
-    {
-      day: 4,
-      date: new Date(this.year, this.monthNumber, 3)
-    }],
-  ]
+      id: 2,
+      name: "Test task1",
+      description: "This is the test taks no2",
+      priority: "high",
+      complated: false,
+      deadline: new Date()
+    },{
+      id: 3,
+      name: "Test task1",
+      description: "This is the test taks no3",
+      priority: "high",
+      complated: false,
+      deadline: new Date()
+    },{
+      id: 4,
+      name: "Test task1",
+      description: "This is the test taks no4",
+      priority: "high",
+      complated: false,
+      deadline: new Date()
+    },{
+      id: 5,
+      name: "Test task1",
+      description: "This is the test taks no5",
+      priority: "high",
+      complated: false,
+      deadline: new Date()
+    }
+  ];
 
 }

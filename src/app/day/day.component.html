@@ -4,6 +4,9 @@
         <div *ngIf="status">
             <app-task></app-task>
         </div>
+        <div *ngFor="let taks of tasks">
+            <span class="badge rounded-pill bg-primary">Task</span>
+        </div>
         <div class="text-end">{{day.day}}</div>
     </div>
 

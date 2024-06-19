@@ -5,6 +5,7 @@
     padding: 20px;
     position: relative;
     z-index: 9999;
+    cursor: pointer;
     /* display: inline-block;
  left: 150px; */
 }

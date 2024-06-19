@@ -20,16 +20,20 @@ export class DayComponent {
   status: boolean = false;
   state: string = 'visible';
   isHovering: boolean = false;
+  currentTask?: Task;
 
   constructor() { }
 
   activateTask() {
-    this.status = !this.status;
-    if (this.status) {
-      this.state = 'visible';
-    }
-    else {
-      this.state = "invisible";
+    if (this.currentTask) {
+      this.status = !this.status;
+      if (this.status) {
+        this.state = 'visible';
+      }
+      else {
+        this.currentTask = undefined;
+        this.state = "invisible";
+      }
     }
   }
 
@@ -39,6 +43,10 @@ export class DayComponent {
 
   @HostListener('mouseleave') onMouseLeave() {
     this.isHovering = false;
+  }
+
+  setCurrentTask(task: Task) {
+    this.currentTask = task;
   }
 }
 

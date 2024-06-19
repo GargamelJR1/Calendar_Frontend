@@ -9,14 +9,23 @@
     style="margin-top: 5px; margin-bottom: 5px;">
     <div (click)="activateTask()" class="day-box">
         <!-- <p>{{state}}</p> -->
-        <div *ngIf="status">
-            <app-task></app-task>
-        </div>
-        <div *ngFor="let task of tasks"
-            style="padding-left: 5px; padding-top: 3px;">
-            <span class="badge rounded-pill bg-primary">Task</span>
+        <div>
+            <div *ngIf="status">
+                <app-task [task]="currentTask"></app-task>
+            </div>
+            <div *ngIf="!status">
+                <div *ngFor="let task of tasks"
+                    style="padding-left: 5px; padding-top: 3px;">
+                    <span class="badge rounded-pill bg-primary"
+                        (click)="setCurrentTask(task)" style="cursor: pointer">
+                        {{(task.name.length > 30) ? (task.name | slice:0:27) +
+                        '...' : task.name}}
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="text-end"
-            style="padding-right: 5px; font-size: medium;">{{day.day}}</div>
+            style="padding-right: 6px; padding-bottom: 4px; font-size: large;">{{day.day}}
+        </div>
     </div>
 </div>

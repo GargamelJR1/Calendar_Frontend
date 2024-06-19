@@ -7,5 +7,5 @@ export interface Event {
     endDate: Date;
     image: string
     location: number;
-    color: string;    
+    color: string;
 }

@@ -5,21 +5,21 @@ import { RegisterComponent } from './auth/register/register.component';
 
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: CalendarComponent,
-        title: 'Calendar'
-      },
-      {
-          path: 'login',
-          component: LoginComponent,
-          title: 'Log In'
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-        title: 'Register'
-      }
+  {
+    path: '',
+    component: CalendarComponent,
+    title: 'Calendar'
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Log In'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    title: 'Register'
+  }
 ];
 
 export default routes;

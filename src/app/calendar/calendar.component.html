@@ -3,19 +3,18 @@
         <div class="col-10 align-items-center">
             <div class="row">
                 <div class="col-2 text-left">
+                    <div style="font-size: xx-large;"><b>{{year}}</b></div>
                 </div>
                 <div class="col-8">
                     <div
                         class="d-flex justify-content-center align-items-center">
                         <mat-icon (click)="decMonth()"
                             class="chevron">chevron_left</mat-icon>
-                        <div style="font-size:xx-large;">{{getMonth().toUpperCase()}}</div>
+                        <div
+                            style="font-size:xx-large;">{{getMonth().toUpperCase()}}</div>
                         <mat-icon (click)="incMonth()"
                             class="chevron">chevron_right</mat-icon>
                     </div>
-                </div>
-                <div class="col-2 text-left">
-                    <div style="font-size: xx-large; padding-left: 195px;"><b>{{year}}</b></div>
                 </div>
             </div>
             <hr>

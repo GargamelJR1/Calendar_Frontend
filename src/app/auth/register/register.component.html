@@ -1,61 +1,60 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-5">
-            <div class="mb-3">
+            <h1>Register</h1>
+            <form #form="ngForm" (ngSubmit)="onSubmit(form)">
                 <div class="mb-3">
-                    <label for="" class="form-label">Name</label>
+                    <label for="firstName" class="form-label">First Name</label>
                     <input
                         type="text"
-                        name=""
-                        id=""
+                        name="firstName"
+                        id="firstName"
                         class="form-control"
-                        placeholder=""
-                        aria-describedby="helpId"
-                    />
-                    <small id="helpId" class="text-muted">Help text</small>
+                        placeholder="Enter your first name"
+                        aria-describedby="firstNameHelp"
+                        ngModel
+                        required />
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Last Name</label>
+                    <label for="lastName" class="form-label">Last Name</label>
                     <input
                         type="text"
-                        name=""
-                        id=""
+                        name="lastName"
+                        id="lastName"
                         class="form-control"
-                        placeholder=""
-                        aria-describedby="helpId"
-                    />
-                    <small id="helpId" class="text-muted">Help text</small>
+                        placeholder="Enter your last name"
+                        aria-describedby="lastNameHelp"
+                        ngModel
+                        required />
                 </div>
-                
-                
-                <label for="" class="form-label">Email</label>
-                <input
-                    type="email"
-                    class="form-control"
-                    name=""
-                    id=""
-                    aria-describedby="emailHelpId"
-                    placeholder="abc@mail.com"
-                />
-                <small id="emailHelpId" class="form-text text-muted"
-                    >Help text</small
-                >
                 <div class="mb-3">
-                    <label for="" class="form-label">Password</label>
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        id="email"
+                        aria-describedby="emailHelp"
+                        placeholder="abc@mail.com"
+                        ngModel
+                        required />
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
                     <input
                         type="password"
                         class="form-control"
-                        name=""
-                        id=""
-                        placeholder=""
-                    />
+                        name="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        ngModel
+                        required />
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="!form.valid">Register</button>
                 </div>
-                
-            </div>
-            
+            </form>
         </div>
     </div>
 </div>

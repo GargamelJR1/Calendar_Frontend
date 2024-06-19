@@ -4,6 +4,7 @@ import { CalendarHeaderComponent } from './calendar-header/calendar-header.compo
 import { CalendarComponent } from './calendar/calendar.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -23,4 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class AppComponent {
   title = 'Calendar_Frontend';
+
+  constructor(public themeService: ThemeService) { 
+    this.themeService.setCurrentTheme();
+  }
 }

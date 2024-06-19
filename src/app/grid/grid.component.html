@@ -1,35 +1,32 @@
 <div class="container-fluid">
-    <div class="row ">
-        <div class="d-flex justify-content-center">
-            <div class="col" (click)="getNumberOfWeeks()">
-                <h4>Monday</h4>
-            </div>
-            <div class="col">
-                <h4>Tuesday</h4>
-            </div>
-            <div class="col">
-                <h4>Wednesday</h4>
-            </div>
-            <div class="col">
-                <h4>Thurstday</h4>
-            </div>
-            <div class="col">
-                <h4>Friday</h4>
-            </div>
-            <div class="col">
-                <h4>Saturday</h4>
-            </div>
-            <div class="col">
-                <h4>Sunday</h4>
-            </div>
-
+    <div class="row d-flex justify-content-end">
+        <div class="col padding-margin-day-string" (click)="getNumberOfWeeks()">
+            <h4>Monday</h4>
+        </div>
+        <div class="col padding-margin-day-string">
+            <h4>Tuesday</h4>
+        </div>
+        <div class="col padding-margin-day-string">
+            <h4>Wednesday</h4>
+        </div>
+        <div class="col padding-margin-day-string">
+            <h4>Thursday</h4>
+        </div>
+        <div class="col padding-margin-day-string">
+            <h4>Friday</h4>
+        </div>
+        <div class="col padding-margin-day-string">
+            <h4>Saturday</h4>
+        </div>
+        <div class="col padding-margin-day-string">
+            <h4>Sunday</h4>
         </div>
     </div>
     <div class="row" *ngFor="let week of month">
-        <hr>
         <div class="col" *ngFor="let day of week">
-            <app-day  [day]="day" [tasks]="tasks"></app-day>
+            <app-day [day]="day" [tasks]="tasks"
+                [isInViewedMonth]="isInViewedMonth(day.date)"
+                style="cursor: pointer"></app-day>
         </div>
-        <br>
     </div>
 </div>

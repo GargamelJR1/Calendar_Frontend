@@ -1,8 +1,10 @@
-.task-box{
- background-color: rgba(250, 10, 190,1);
- border: solid 2px #000000;
- border-radius: 10px;
- padding: 20px;
- /* display: inline-block;
+.task-box {
+    background-color: rgba(250, 10, 190, 1);
+    border: solid 2px #000000;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    z-index: 9999;
+    /* display: inline-block;
  left: 150px; */
 }

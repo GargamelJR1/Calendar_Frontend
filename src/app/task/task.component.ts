@@ -16,14 +16,13 @@ export class TaskComponent {
     tags: [],
     priority: 'high',
     complated: false,
-    deadline: new Date(2024,1,1,12,0),
-    completeDate: new Date(2024,1,2,12,0),
+    deadline: new Date(2024, 1, 1, 12, 0),
+    completeDate: new Date(2024, 1, 2, 12, 0),
     createdAt: new Date(Date.now()),
     master: 0
   }
 
-  getPriority()
-  {
-    
+  getPriority() {
+
   }
 }

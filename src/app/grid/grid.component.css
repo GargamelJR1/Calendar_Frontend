@@ -1,3 +1,8 @@
 .day-row {
     display: block;
 }
+
+.padding-margin-day-string {
+    padding-left: 20px;
+    margin-bottom: -12px;
+}

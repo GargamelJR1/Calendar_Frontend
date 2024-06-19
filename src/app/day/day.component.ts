@@ -16,6 +16,7 @@ import { Day } from '../day';
 export class DayComponent {
   @Input() day!: Day;
   @Input() tasks?: Task[];
+  @Input() isInViewedMonth?: boolean;
   status: boolean = false;
   state: string = 'visible';
   isHovering: boolean = false;

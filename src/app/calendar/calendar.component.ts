@@ -1,60 +1,54 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { GridComponent } from '../grid/grid.component';
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
   imports: [
-    GridComponent, 
-    MatButtonModule, 
-    MatDividerModule, 
+    GridComponent,
+    MatButtonModule,
+    MatDividerModule,
     MatIconModule
   ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent {
-  
-  
+
+
   year: number = new Date().getFullYear();
   month: number = new Date().getMonth();
 
   // constructor(private cdr: ChangeDetectorRef) {}
-  
-  incMonth()
-  {
-    if(this.month==11)
-      {
-        this.year++;
-        this.month=0;
-      }
-      else{
-        this.month++;
 
-      }
-      // this.cdr.detectChanges();
+  incMonth() {
+    if (this.month == 11) {
+      this.year++;
+      this.month = 0;
+    }
+    else {
+      this.month++;
+
+    }
+    // this.cdr.detectChanges();
   }
-  decMonth()
-  {
-    if(this.month==0)
-      {
-        this.year--;
-        this.month=11;
-      }
-      else{
-        this.month--;
+  decMonth() {
+    if (this.month == 0) {
+      this.year--;
+      this.month = 11;
+    }
+    else {
+      this.month--;
 
-      }
-      // this.cdr.detectChanges();
+    }
+    // this.cdr.detectChanges();
   }
 
-  getMonth()
-  {
-    switch(this.month)
-    {
+  getMonth() {
+    switch (this.month) {
       case 0:
         return 'January';
       case 1:
@@ -74,7 +68,7 @@ export class CalendarComponent {
       case 8:
         return 'September';
       case 9:
-        return 'Oktober';
+        return 'October';
       case 10:
         return 'November';
       case 11:

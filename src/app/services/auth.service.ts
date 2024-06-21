@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-const backendPort = 8080;
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
-    return this.httpClient.post('http://localhost:' + backendPort + '/auth/login', {
+    return this.httpClient.post('/api/auth/login', {
       email: email,
       password: password
     }).pipe(tap((response: any) => {
@@ -22,14 +21,14 @@ export class AuthService {
 
   logout(): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    return this.httpClient.get('http://localhost:' + backendPort + '/auth/logout', { headers }).pipe(tap(() => {
+    return this.httpClient.get('/api/auth/logout', { headers }).pipe(tap(() => {
       localStorage.removeItem('token');
       localStorage.removeItem('email');
     }));
   }
 
   register(email: string, password: string, lastName: string, firstName: string): Observable<any> {
-    return this.httpClient.post('http://localhost:' + backendPort + '/auth/register', {
+    return this.httpClient.post('/api/auth/register', {
       lastName: lastName,
       firstName: firstName,
       email: email,

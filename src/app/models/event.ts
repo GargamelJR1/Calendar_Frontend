@@ -2,10 +2,12 @@ export interface Event {
     id: number;
     name: string;
     description: string;
-    tags: number[];
+    tags?: number[];
     startDate: Date;
     endDate: Date;
-    image: string
-    location: number;
+    image?: string;
+    latitude : number;
+    longitude: number;
+    address: string;
     color: string;
 }

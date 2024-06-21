@@ -1,8 +1,8 @@
 import { Component, HostListener, Input, } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
 import { CommonModule, NgFor } from '@angular/common';
-import { Task } from '../task'
-import { Day } from '../day';
+import { Task } from '../models/task'
+import { Day } from '../models/day';
 
 
 

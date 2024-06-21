@@ -6,9 +6,11 @@ export interface Task {
     description: string;
     tags?: number[];
     priority: string;
-    complated: boolean;
+    completed: boolean;
     deadline: Date;
     completeDate?: Date;
     createdAt?: Date;
     master?: number;
+    subtasks?: Task[];
 }
+

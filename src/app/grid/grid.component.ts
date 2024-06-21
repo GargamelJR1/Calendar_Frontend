@@ -1,8 +1,8 @@
 import { Component, Input, ChangeDetectorRef, SimpleChanges, OnChanges } from '@angular/core';
 import { DayComponent } from '../day/day.component';
 import { CommonModule, NgFor } from '@angular/common';
-import { Day } from '../day';
-import { Task } from '../task';
+import { Day } from '../models/day';
+import { Task } from '../models/task';
 
 
 @Component({
@@ -103,7 +103,7 @@ export class GridComponent implements OnChanges {
       description: "This is the test taks no1",
       tags: undefined,
       priority: "high",
-      complated: false,
+      completed: false,
       deadline: new Date(),
       completeDate: undefined,
       createdAt: undefined,
@@ -114,28 +114,28 @@ export class GridComponent implements OnChanges {
       name: "Test task1",
       description: "This is the test taks no2",
       priority: "high",
-      complated: false,
+      completed: false,
       deadline: new Date()
     }, {
       id: 3,
       name: "Test task1",
       description: "This is the test taks no3",
       priority: "high",
-      complated: false,
+      completed: false,
       deadline: new Date()
     }, {
       id: 4,
       name: "Test task1",
       description: "This is the test taks no4",
       priority: "high",
-      complated: false,
+      completed: false,
       deadline: new Date()
     }, {
       id: 5,
       name: "Test task1",
       description: "This is the test taks no5",
       priority: "high",
-      complated: false,
+      completed: false,
       deadline: new Date()
     }
   ];

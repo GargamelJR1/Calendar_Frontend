@@ -1,9 +1,21 @@
-<div class="task-box">
-    <h3>{{task.name}}</h3>
-    <p>{{task.description}}</p>
-    <!-- task tags components -->
-    <p>{{task.priority}}</p>
-    <p>Deadline: {{task.deadline.toDateString()}}</p>
-    <p>Complated: {{task.completeDate?.toDateString()}}</p>
-    <p>Created At: {{task.createdAt?.toDateString()}}</p>
+<div *ngIf="task" class="card task-box">
+    <div class="card-header">
+        <h3 class="card-title" style="margin-bottom: 0px; font-weight: 500;">{{task.name}}</h3>
+    </div>
+    <div class="card-body">
+        <p class="card-text">Description: {{task.description}}</p>
+        <p class="card-text">Deadline: {{task.deadline | date:'mediumDate'}}</p>
+        <p class="card-text">Status: {{task.completed ? 'Completed' : 'Pending'}}</p>
+        <p class="card-text">Priority: {{task.priority}}</p>
+        <p class="card-text" *ngIf="task.tags">Tags: {{task.tags.join(', ')}}</p>
+        <p class="card-text" *ngIf="task.completeDate">Complete Date: {{task.completeDate | date:'mediumDate'}}</p>
+        <p class="card-text" *ngIf="task.createdAt">Created At: {{task.createdAt | date:'mediumDate'}}</p>
+        <p class="card-text" *ngIf="task.master">Master Task ID: {{task.master}}</p>
+        <div *ngIf="task.subtasks && task.subtasks.length > 0">
+            <p class="card-text">Subtasks:</p>
+            <ul>
+                <li *ngFor="let subtask of task.subtasks">{{subtask.name}}</li>
+            </ul>
+        </div>
+    </div>
 </div>

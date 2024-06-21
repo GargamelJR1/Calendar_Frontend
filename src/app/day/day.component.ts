@@ -1,6 +1,6 @@
 import { Component, HostListener, Input, } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Task } from '../models/task'
 import { Day } from '../models/day';
 import { ThemeService } from '../services/theme.service';
@@ -10,7 +10,10 @@ import { ThemeService } from '../services/theme.service';
 @Component({
   selector: 'app-day',
   standalone: true,
-  imports: [TaskComponent, CommonModule, NgFor],
+  imports: [
+    TaskComponent, 
+    CommonModule
+  ],
   templateUrl: './day.component.html',
   styleUrl: './day.component.css'
 })

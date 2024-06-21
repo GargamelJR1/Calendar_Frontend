@@ -1,0 +1,16 @@
+.card.task-box {
+    margin-bottom: 0px;
+}
+
+.card-header h3 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.card-body {
+    padding: 2px;
+}
+
+.card-text {
+    margin-bottom: 2px;
+}

@@ -24,6 +24,12 @@ export class TaskService {
     });
   }
 
+  getTasksByDates(startDate: Date, endDate: Date): Task[] {
+    return this._tasks.filter(task => {
+      return task.deadline >= startDate && task.deadline <= endDate;
+    });
+  }
+
   addTask(task: Task) {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.post<Task>('/api/task/add', task, { headers }).subscribe((task: Task) => {

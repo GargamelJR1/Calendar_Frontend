@@ -1,0 +1,15 @@
+<h2 class="bg-secondary rounded-1"
+    [ngStyle]="this.themeService.isLightTheme() ? {'color': 'white'} :null">
+    Current month</h2>
+<div *ngIf="tasksCurrentMonth.length === 0" class="alert alert-success"
+    role="alert">
+    Congratulations! <br> The list is empty.
+</div>
+
+<div *ngIf="tasksCurrentMonth.length > 0">
+    <div *ngFor="let task of tasksCurrentMonth">
+        <!-- <app-task-brief [task]="task"></app-task-brief> -->
+    </div>
+    <hr>
+</div>
+<hr>

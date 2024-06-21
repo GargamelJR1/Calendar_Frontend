@@ -3,6 +3,7 @@ import { TaskComponent } from '../task/task.component';
 import { CommonModule, NgFor } from '@angular/common';
 import { Task } from '../models/task'
 import { Day } from '../models/day';
+import { ThemeService } from '../services/theme.service';
 
 
 
@@ -22,7 +23,7 @@ export class DayComponent {
   isHovering: boolean = false;
   currentTask?: Task;
 
-  constructor() { }
+  constructor(public themeService: ThemeService) { }
 
   activateTask() {
     if (this.currentTask) {

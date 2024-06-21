@@ -3,21 +3,29 @@ import { GridComponent } from '../grid/grid.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { WeeksTaskListComponent } from '../weeks-task-list/weeks-task-list.component';
+import { MonthTaskListComponent } from '../month-task-list/month-task-list.component';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
   imports: [
+    FormsModule,
+    CommonModule,
     GridComponent,
     MatButtonModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    WeeksTaskListComponent,
+    MonthTaskListComponent
   ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent {
-
+  selectedOption: string = 'nextWeeks';
 
   year: number = new Date().getFullYear();
   month: number = new Date().getMonth();

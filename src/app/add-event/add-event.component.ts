@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { EventService } from '../services/event.service';
 import Modal from 'bootstrap/js/dist/modal';
 import { Event } from '../models/event';
@@ -22,7 +22,7 @@ export class AddEventComponent {
     id: 0,
     name: '',
     description: '',
-    startDate: this.date ? this.date : new Date(),
+    startDate: this.date || new Date(),
     endDate: new Date(),
     latitude: 0,
     longitude: 0,
@@ -46,6 +46,13 @@ export class AddEventComponent {
     modalElement.addEventListener('hidden.bs.modal', () => {
       this.modalClosed.emit();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['date'] && this.date) {
+      this.newEvent.startDate = this.date;
+      this.newEvent.endDate = this.date;
+    }
   }
 
   // Getter to format startDate as 'YYYY-MM-DDTHH:mm'

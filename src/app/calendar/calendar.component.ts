@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { WeeksTaskListComponent } from '../weeks-task-list/weeks-task-list.component';
 import { MonthTaskListComponent } from '../month-task-list/month-task-list.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
+import { TaskService } from '../services/task.service';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-calendar',
@@ -33,7 +35,12 @@ export class CalendarComponent {
   year: number = new Date().getFullYear();
   month: number = new Date().getMonth();
 
-  // constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private taskService: TaskService, private eventService: EventService) { }
+
+  fetchTasksAndEvents() {
+    this.taskService.fetchTasks();
+    this.eventService.fetchEvents();
+  }
 
   incMonth() {
     if (this.month == 11) {
@@ -45,7 +52,9 @@ export class CalendarComponent {
 
     }
     // this.cdr.detectChanges();
+    this.fetchTasksAndEvents();
   }
+
   decMonth() {
     if (this.month == 0) {
       this.year--;
@@ -56,6 +65,11 @@ export class CalendarComponent {
 
     }
     // this.cdr.detectChanges();
+    this.fetchTasksAndEvents();
+  }
+
+  ngOnInit() {
+    this.fetchTasksAndEvents();
   }
 
   getMonth() {
@@ -86,8 +100,6 @@ export class CalendarComponent {
         return 'December';
       default:
         return '';
-
     }
-
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { TimeSpan } from '../models/timespan';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,28 @@ export class TaskService {
 
   fetchTasks() {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    this.http.get<Task[]>('/api/task', { headers }).subscribe((tasks: Task[]) => {
-      this._tasks = tasks;
+    this.http.get<Task[]>('/api/task', { headers }).subscribe((tasks: any[]) => {
+      this._tasks = tasks.map(task => ({
+        ...task,
+        deadline: new Date(task.deadline),
+        completeDate: task.completeDate ? new Date(task.completeDate) : undefined,
+        createdAt: task.createdAt ? new Date(task.createdAt) : undefined,
+        tags: task.tags.map((tag: { name: string }) => tag.name)
+      }));
+      this.tasks.next(this._tasks);
+    });
+  }
+  
+  fetchTasksFromThreeMonths(timeSpan: TimeSpan) {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    this.http.post<Task[]>('/api/task/fromThreeMonths', timeSpan, { headers }).subscribe((tasks: any[]) => {
+      this._tasks = tasks.map(task => ({
+        ...task,
+        deadline: new Date(task.deadline),
+        completeDate: task.completeDate ? new Date(task.completeDate) : undefined,
+        createdAt: task.createdAt ? new Date(task.createdAt) : undefined,
+        tags: task.tags.map((tag: { name: string }) => tag.name)
+      }));
       this.tasks.next(this._tasks);
     });
   }

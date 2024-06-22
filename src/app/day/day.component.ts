@@ -5,12 +5,15 @@ import { Task } from '../models/task'
 import { Day } from '../models/day';
 import { ThemeService } from '../services/theme.service';
 import { AddEventComponent } from '../add-event/add-event.component';
+import { TaskService } from '../services/task.service';
+import { Event } from '../models/event';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-day',
   standalone: true,
   imports: [
-    TaskComponent, 
+    TaskComponent,
     CommonModule,
     AddEventComponent
   ],
@@ -19,7 +22,8 @@ import { AddEventComponent } from '../add-event/add-event.component';
 })
 export class DayComponent {
   @Input() day!: Day;
-  @Input() tasks?: Task[];
+  events?: Event[];
+  tasks?: Task[];
   @Input() isInViewedMonth?: boolean;
   status: boolean = false;
   state: string = 'visible';
@@ -27,9 +31,28 @@ export class DayComponent {
   currentTask?: Task;
   showAddEvent: boolean = false;
 
-  constructor(public themeService: ThemeService) { }
+  constructor(public themeService: ThemeService, private taskService: TaskService, private eventService: EventService) { }
 
-  activateTask() {
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe(tasks => {
+      this.tasks = tasks.filter(task => {
+        const taskDeadline = new Date(task.deadline.setHours(0, 0, 0, 0));
+        const dayDate = new Date(this.day.date.setHours(0, 0, 0, 0));
+        return taskDeadline.getTime() === dayDate.getTime();
+      });
+      console.log(this.tasks);
+    });
+
+    this.eventService.getEvents().subscribe(events => {
+      this.events = events.filter(event => {
+        const eventStartDate = new Date(event.startDate.setHours(0, 0, 0, 0));
+        const dayDate = new Date(this.day.date.setHours(0, 0, 0, 0));
+        return eventStartDate.getTime() === dayDate.getTime();
+      });
+    });
+  }
+
+  showTask() {
     if (this.currentTask) {
       this.status = !this.status;
       if (this.status) {

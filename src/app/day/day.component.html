@@ -7,29 +7,54 @@
     [class.bg-body-secondary]="isHovering && !isInViewedMonth"
     [ngStyle]="{'border-radius': isHovering ? '5px' : '0'}"
     style="margin-top: 5px; margin-bottom: 5px;">
-    <div (click)="activateTask()" class="day-box">
+    <div (click)="showTask()" class="day-box">
         <!-- <p>{{state}}</p> -->
         <div>
             <div *ngIf="status">
                 <app-task [task]="currentTask"></app-task>
             </div>
-            <div *ngIf="!status">
-                <div *ngFor="let task of tasks"
-                    style="padding-left: 5px; padding-top: 3px;">
-                    <span class="badge rounded-pill bg-primary"
-                        (click)="setCurrentTask(task)" style="cursor: pointer">
-                        {{(task.name.length > 30) ? (task.name | slice:0:27) +
-                        '...' : task.name}}
-                    </span>
+            <div *ngIf="!status" style="display: flex;">
+                <!-- tasks -->
+                <!-- there is a problem with dispalying all the tasks, if there are too many, they are not displayed -->
+                <div
+                    style="width: 50%; height: 125px; overflow: hidden; position: relative;">
+                    <div
+                        style="width: 100%; height: 100%; overflow-y: scroll; padding-right: 17px; box-sizing: content-box;">
+                        <div *ngFor="let task of tasks"
+                            style="padding-left: 5px; padding-top: 3px;">
+                            <span class="badge rounded-pill bg-primary"
+                                (click)="setCurrentTask(task)"
+                                style="cursor: pointer">
+                                {{(task.name.length > 14) ? (task.name |
+                                slice:0:13) + '...' : task.name}}
+                            </span>
+                        </div>
+                    </div>
                 </div>
+                <!-- events -->
+                <!-- <div
+                    style="width: 50%; height: 125px; overflow: hidden; position: relative;">
+                    <div
+                        style="width: 100%; height: 100%; overflow-y: scroll; padding-right: 17px; box-sizing: content-box;">
+                        <div *ngFor="let task of tasks"
+                            style="padding-left: 5px; padding-top: 3px;">
+                            <span class="badge rounded-pill bg-primary"
+                                (click)="setCurrentTask(task)"
+                                style="cursor: pointer">
+                                {{(task.name.length > 14) ? (task.name |
+                                slice:0:13) + '...' : task.name}}
+                            </span>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
         <div class="text-end"
-            style="padding-right: 6px; padding-bottom: 4px; font-size: large;">
+            style="padding-right: 6px; padding-bottom: 4px; font-size: large; display: flexbox;">
             <div *ngIf="!isHovering">{{day.day}}</div>
             <div *ngIf="isHovering">
                 <button class="btn bg-transparent" style="padding: 0px;"
-                (click)="this.showAddEvent=true">
+                    (click)="this.showAddEvent=true">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         width="23" height="23" fill="currentColor"
                         class="bi bi-plus-circle" viewBox="0 0 16 16"
@@ -44,4 +69,5 @@
         </div>
     </div>
 </div>
-<app-add-event [date]="day.date" *ngIf="this.showAddEvent" (modalClosed)="this.showAddEvent=false"></app-add-event>
+<app-add-event [date]="day.date" *ngIf="this.showAddEvent"
+    (modalClosed)="this.showAddEvent=false"></app-add-event>

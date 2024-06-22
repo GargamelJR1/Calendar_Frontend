@@ -4,9 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Task } from '../models/task'
 import { Day } from '../models/day';
 import { ThemeService } from '../services/theme.service';
-import { AddTaskComponent } from '../add-task/add-task.component';
-
-
+import { AddEventComponent } from '../add-event/add-event.component';
 
 @Component({
   selector: 'app-day',
@@ -14,7 +12,7 @@ import { AddTaskComponent } from '../add-task/add-task.component';
   imports: [
     TaskComponent, 
     CommonModule,
-    AddTaskComponent
+    AddEventComponent
   ],
   templateUrl: './day.component.html',
   styleUrl: './day.component.css'
@@ -27,7 +25,7 @@ export class DayComponent {
   state: string = 'visible';
   isHovering: boolean = false;
   currentTask?: Task;
-  showAddTask: boolean = false;
+  showAddEvent: boolean = false;
 
   constructor(public themeService: ThemeService) { }
 
@@ -54,11 +52,6 @@ export class DayComponent {
 
   setCurrentTask(task: Task) {
     this.currentTask = task;
-  }
-
-  showAddTaskModal() {
-    this.showAddTask = false;
-    this.showAddTask = true;
   }
 }
 

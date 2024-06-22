@@ -2,7 +2,7 @@ export interface Event {
     id: number;
     name: string;
     description: string;
-    tags?: number[];
+    tags?: string[];
     startDate: Date;
     endDate: Date;
     image?: string;

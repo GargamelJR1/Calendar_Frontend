@@ -16,6 +16,13 @@
                             class="chevron">chevron_right</mat-icon>
                     </div>
                 </div>
+                <div class="col-2 text-right"
+                    style="display: flex; justify-content: flex-end;">
+                    <button class="btn btn-primary"
+                        style="padding-top: 1px; padding-bottom: 1px; margin-top: -4px; margin-bottom: -4px;"
+                        (click)="this.showAddTask=true">
+                        Add Task</button>
+                </div>
             </div>
             <hr>
             <app-grid [year]="year" [monthNumber]="month"></app-grid>
@@ -45,3 +52,5 @@
         </div>
     </div>
 </div>
+<app-add-task *ngIf="this.showAddTask"
+    (modalClosed)="this.showAddTask=false"></app-add-task>

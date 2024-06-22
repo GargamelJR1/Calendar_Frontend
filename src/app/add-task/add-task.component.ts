@@ -3,21 +3,25 @@ import { Task } from '../models/task';
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { TaskService } from '../services/task.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.css'
 })
 export class AddTaskComponent {
-  @Input() date?: Date;
   @Output() modalClosed = new EventEmitter<void>();
+  @Input() master?: number;
+  @Input() showAddMasterOption?: boolean;
+  tagsString: string = '';
 
-  currentMonthTasks: Task[] = [];
+  tasksToSelect: Task[] = [];
 
   newTask: Task = {
     id: 0,
@@ -29,14 +33,14 @@ export class AddTaskComponent {
     deadline: new Date(),
     completeDate: undefined,
     createdAt: new Date(),
-    master: undefined
+    master: this.master
   };
 
   constructor(private el: ElementRef, private tasksService: TaskService) { }
 
   ngOnInit(): void {
     this.tasksService.getTasks().subscribe(tasks => {
-      this.currentMonthTasks = tasks.filter(task => task.deadline.getMonth() === this.date?.getMonth());
+      this.tasksToSelect = tasks;
     });
   }
 
@@ -54,4 +58,7 @@ export class AddTaskComponent {
     });
   }
 
+  processTags(value: string): void {
+    this.newTask.tags = value.split(',').map(tag => tag.trim()); // Split by comma and trim whitespace
+  }
 }

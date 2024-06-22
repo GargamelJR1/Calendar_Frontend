@@ -4,7 +4,7 @@ export interface Task {
     id: number;
     name: string;
     description: string;
-    tags?: number[];
+    tags?: string[];
     priority: string;
     completed: boolean;
     deadline: Date;

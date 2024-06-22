@@ -29,7 +29,7 @@
             <div *ngIf="!isHovering">{{day.day}}</div>
             <div *ngIf="isHovering">
                 <button class="btn bg-transparent" style="padding: 0px;"
-                (click)="this.showAddTask=true">
+                (click)="this.showAddEvent=true">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         width="23" height="23" fill="currentColor"
                         class="bi bi-plus-circle" viewBox="0 0 16 16"
@@ -44,4 +44,4 @@
         </div>
     </div>
 </div>
-<app-add-task [date]="day.date" *ngIf="this.showAddTask" (modalClosed)="this.showAddTask=false"></app-add-task>
+<app-add-event [date]="day.date" *ngIf="this.showAddEvent" (modalClosed)="this.showAddEvent=false"></app-add-event>

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WeeksTaskListComponent } from '../weeks-task-list/weeks-task-list.component';
 import { MonthTaskListComponent } from '../month-task-list/month-task-list.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-calendar',
@@ -19,13 +20,15 @@ import { MonthTaskListComponent } from '../month-task-list/month-task-list.compo
     MatDividerModule,
     MatIconModule,
     WeeksTaskListComponent,
-    MonthTaskListComponent
+    MonthTaskListComponent,
+    AddTaskComponent
   ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent {
   selectedOption: string = 'nextWeeks';
+  showAddTask: boolean = false;
 
   year: number = new Date().getFullYear();
   month: number = new Date().getMonth();

@@ -17,5 +17,8 @@
                 <li *ngFor="let subtask of task.subtasks">{{subtask.name}}</li>
             </ul>
         </div>
+        <!-- Button to add subtasks -->
+        <button type="button btn-small" class="btn btn-secondary btn-sm" (click)="this.showAddTask=true">Add Subtask</button>
     </div>
 </div>
+<app-add-task [master]="task?.id" *ngIf="this.showAddTask" (modalClosed)="this.showAddTask=false"></app-add-task>

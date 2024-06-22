@@ -6,6 +6,13 @@
         <p class="card-text">Description: {{task.description}}</p>
         <p class="card-text">Deadline: {{task.deadline | date:'mediumDate'}}</p>
         <p class="card-text">Status: {{task.completed ? 'Completed' : 'Pending'}}</p>
+        <!-- Checkbox for marking task as completed -->
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="completedCheckbox" [(ngModel)]="task.completed">
+            <label class="form-check-label" for="completedCheckbox">
+                Mark as Completed
+            </label>
+        </div>
         <p class="card-text">Priority: {{task.priority}}</p>
         <p class="card-text" *ngIf="task.tags">Tags: {{task.tags.join(', ')}}</p>
     </div>

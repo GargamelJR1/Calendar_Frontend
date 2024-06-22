@@ -41,8 +41,8 @@
         <div class="mb-3">
           <label for="taskTags" class="form-label">Tags:</label>
           <input type="text" id="taskTags" name="taskTags" class="form-control"
-            [(ngModel)]="newTask.tags"
-            placeholder="Enter tags, separated by commas" required>
+            [(ngModel)]="tagsString" (ngModelChange)="processTags($event)"
+            placeholder="Enter tags, separated by commas">
         </div>
 
         <!-- Deadline Datetime Input -->
@@ -54,13 +54,13 @@
         </div>
 
         <!-- Master Task Selection (Optional) -->
-        <div class="mb-3">
+        <div class="mb-3" *ngIf="this.showAddMasterOption">
           <label for="masterTask" class="form-label">Master Task
             (Optional):</label>
           <select id="masterTask" name="masterTask" class="form-select"
             [(ngModel)]="newTask.master">
             <option value selected>None</option>
-            <option *ngFor="let task of this.currentMonthTasks" [value]="task.id">{{
+            <option *ngFor="let task of this.tasksToSelect" [value]="task.id">{{
               task.name
               }}</option>
           </select>

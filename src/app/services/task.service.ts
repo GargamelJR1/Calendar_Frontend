@@ -25,8 +25,9 @@ export class TaskService {
     this.http.get<Task[]>('/api/task', { headers }).subscribe((tasks: any[]) => {
       this._tasks = tasks.map(task => ({
         ...task,
+        completed: task.completed,
         deadline: new Date(task.deadline),
-        completeDate: task.completeDate ? new Date(task.completeDate) : undefined,
+        completeDate: task.completedAt ? new Date(task.completedAt) : undefined,
         createdAt: task.createdAt ? new Date(task.createdAt) : undefined,
         tags: task.tags.map((tag: { name: string }) => tag.name)
       }));
@@ -40,7 +41,7 @@ export class TaskService {
       this._tasks = tasks.map(task => ({
         ...task,
         deadline: new Date(task.deadline),
-        completeDate: task.completeDate ? new Date(task.completeDate) : undefined,
+        completeDate: task.completedAt ? new Date(task.completedAt) : undefined,
         createdAt: task.createdAt ? new Date(task.createdAt) : undefined,
         tags: task.tags.map((tag: { name: string }) => tag.name)
       }));
@@ -76,6 +77,13 @@ export class TaskService {
       const index = this._tasks.findIndex(t => t.id === task.id);
       this._tasks[index] = task;
       this.tasks.next(this._tasks);
+    });
+  }
+
+  setTaskCompletionStatus(id: number, completed: boolean) {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    this.http.put<Task>(`/api/task/complete/${id}/${completed}`, {}, { headers }).subscribe(() => {
+      this.fetchTasks();
     });
   }
 }

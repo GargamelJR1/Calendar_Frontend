@@ -12,10 +12,11 @@
         <!-- Status and Checkbox on the same line, with Status aligned -->
         <p class="card-text mb-0"><span class="semibold">Status:</span>
             {{task.completed ? 'Completed' : 'Pending'}}</p>
-        <input class="form-check-input" type="checkbox" id="completedCheckbox"
-            [(ngModel)]="task.completed" style="margin-right: 5px;">
+        <input type="checkbox" [id]="'completedCheckbox' + task.id"
+            class="form-check-input" style="margin-right: 5px;"
+            [(ngModel)]="task.completed" (change)="completeTask(task)">
         <label class="form-check-label"
-            for="completedCheckbox">Completed</label>
+            [for]="'completedCheckbox' + task.id">Completed</label>
         <p class="card-text" *ngIf="task.priority"><span
                 class="semibold">Priority:</span> {{task.priority}}</p>
         <p class="card-text" *ngIf="task.tags && task.tags.length"><span

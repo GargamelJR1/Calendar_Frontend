@@ -14,3 +14,7 @@
 .card-text {
     margin-bottom: 2px;
 }
+
+.semibold {
+    font-weight: 500;
+}

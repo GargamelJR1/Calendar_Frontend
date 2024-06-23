@@ -39,14 +39,14 @@
                 <input type="radio" class="btn-check" name="options-base"
                     id="currentMonth" [(ngModel)]="selectedOption"
                     value="currentMonth" autocomplete="off">
-                <label class="btn" for="currentMonth">Current month</label>
+                <label class="btn" for="currentMonth">Selected month</label>
 
                 <hr>
                 <div *ngIf="selectedOption === 'nextWeeks'">
                     <app-weeks-task-list></app-weeks-task-list>
                 </div>
                 <div *ngIf="selectedOption === 'currentMonth'">
-                    <app-month-task-list></app-month-task-list>
+                    <app-month-task-list #monthTaskList [month]="this.month"></app-month-task-list>
                 </div>
             </div>
         </div>

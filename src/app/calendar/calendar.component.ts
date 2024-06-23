@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { GridComponent } from '../grid/grid.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,6 +29,7 @@ import { EventService } from '../services/event.service';
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent {
+  @ViewChild('monthTaskList') monthTaskListComponent!: MonthTaskListComponent;
   selectedOption: string = 'nextWeeks';
   showAddTask: boolean = false;
 
@@ -53,6 +54,7 @@ export class CalendarComponent {
     }
     // this.cdr.detectChanges();
     this.fetchTasksAndEvents();
+    this.updateMonthInChildComponent();
   }
 
   decMonth() {
@@ -66,6 +68,14 @@ export class CalendarComponent {
     }
     // this.cdr.detectChanges();
     this.fetchTasksAndEvents();
+    this.updateMonthInChildComponent();
+  }
+
+  updateMonthInChildComponent() {
+    if (this.monthTaskListComponent) {
+      this.monthTaskListComponent.month = this.month;
+      this.monthTaskListComponent.refresh();
+    }
   }
 
   ngOnInit() {

@@ -43,7 +43,7 @@ export class DayComponent {
         const dayDate = new Date(this.day.date.setHours(0, 0, 0, 0));
         return taskDeadline.getTime() === dayDate.getTime();
       });
-      console.log(this.tasks);
+      // console.log(this.tasks);
     });
 
     this.eventService.getEvents().subscribe(events => {

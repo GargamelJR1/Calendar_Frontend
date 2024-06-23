@@ -16,9 +16,9 @@ export class ThemeService {
   }
 
   toogleTheme() {
-    console.log('toogleTheme');
+    // console.log('toogleTheme');
     var currentTheme = this.cookieService.get('theme');
-    console.log('currentTheme', currentTheme);
+    // console.log('currentTheme', currentTheme);
 
     const htmlTag = document.querySelector('html');
     if (currentTheme === 'dark') {

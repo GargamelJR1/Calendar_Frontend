@@ -3,20 +3,14 @@
         <h3 class="card-title" style="margin-bottom: 0px; font-weight: 500;">{{task.name}}</h3>
     </div>
     <div class="card-body">
-        <p class="card-text">Description: {{task.description}}</p>
-        <p class="card-text">Deadline: {{task.deadline | date:'mediumDate'}}</p>
-        <p class="card-text">Status: {{task.completed ? 'Completed' : 'Pending'}}</p>
-        <!-- Checkbox for marking task as completed -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="completedCheckbox" [(ngModel)]="task.completed">
-            <label class="form-check-label" for="completedCheckbox">
-                Mark as Completed
-            </label>
-        </div>
-        <p class="card-text">Priority: {{task.priority}}</p>
-        <p class="card-text" *ngIf="task.tags">Tags: {{task.tags.join(', ')}}</p>
+        <p class="card-text" *ngIf="task.description"><span class="semibold">Description:</span> {{task.description}}</p>
+        <p class="card-text" *ngIf="task.deadline"><span class="semibold">Deadline:</span> {{task.deadline | date:'mediumDate'}}</p>
+        <!-- Status and Checkbox on the same line, with Status aligned -->
+        <p class="card-text mb-0"><span class="semibold">Status:</span> {{task.completed ? 'Completed' : 'Pending'}}</p>
+        <input class="form-check-input" type="checkbox" id="completedCheckbox" [(ngModel)]="task.completed" style="margin-right: 5px;">
+        <label class="form-check-label" for="completedCheckbox">Completed</label>
+        <p class="card-text" *ngIf="task.priority"><span class="semibold">Priority:</span> {{task.priority}}</p>
+        <p class="card-text" *ngIf="task.tags && task.tags.length"><span class="semibold">Tags:</span> {{task.tags.join(', ')}}</p>
     </div>
 </div>
 <div *ngIf="!task" class="alert alert-warning" role="alert">
-    Error: Task not found
-</div>

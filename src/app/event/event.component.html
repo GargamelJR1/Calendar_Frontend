@@ -1,0 +1,14 @@
+<div *ngIf="event" class="card event-box">
+    <div class="card-header">
+        <h3 class="card-title" style="margin-bottom: 0px; font-weight: 500;">{{event.name}}</h3>
+    </div>
+    <div class="card-body">
+        <p class="card-text" *ngIf="event.description">Description: {{event.description}}</p>
+        <p class="card-text" *ngIf="event.startDate">Start Date: {{event.startDate | date:'mediumDate'}}</p>
+        <p class="card-text" *ngIf="event.endDate">End Date: {{event.endDate | date:'mediumDate'}}</p>
+        <p class="card-text" *ngIf="event.address">Location: {{event.address}}</p>
+        <p class="card-text" *ngIf="event.tags && event.tags.length > 0">Tags: {{event.tags.join(', ')}}</p>
+        <p class="card-text" *ngIf="event.latitude">Latitude: {{event.latitude}}</p>
+        <p class="card-text" *ngIf="event.longitude">Longitude: {{event.longitude}}</p>
+    </div>
+</div>

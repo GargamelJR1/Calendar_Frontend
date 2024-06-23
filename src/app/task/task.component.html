@@ -3,11 +3,11 @@
         <h3 class="card-title" style="margin-bottom: 0px; font-weight: 500;">{{task.name}}</h3>
     </div>
     <div class="card-body">
-        <p class="card-text">Description: {{task.description}}</p>
-        <p class="card-text">Deadline: {{task.deadline | date:'mediumDate'}}</p>
+        <p class="card-text" *ngIf="task.description">Description: {{task.description}}</p>
+        <p class="card-text" *ngIf="task.deadline">Deadline: {{task.deadline | date:'mediumDate'}}</p>
         <p class="card-text">Status: {{task.completed ? 'Completed' : 'Pending'}}</p>
-        <p class="card-text">Priority: {{task.priority}}</p>
-        <p class="card-text" *ngIf="task.tags">Tags: {{task.tags.join(', ')}}</p>
+        <p class="card-text" *ngIf="task.priority">Priority: {{task.priority}}</p>
+        <p class="card-text" *ngIf="task.tags && task.tags.length > 0">Tags: {{task.tags.join(', ')}}</p>
         <p class="card-text" *ngIf="task.completeDate">Complete Date: {{task.completeDate | date:'mediumDate'}}</p>
         <p class="card-text" *ngIf="task.createdAt">Created At: {{task.createdAt | date:'mediumDate'}}</p>
         <p class="card-text" *ngIf="task.master">Master Task ID: {{task.master}}</p>

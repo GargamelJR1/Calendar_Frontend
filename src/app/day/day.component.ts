@@ -8,6 +8,7 @@ import { AddEventComponent } from '../add-event/add-event.component';
 import { TaskService } from '../services/task.service';
 import { Event } from '../models/event';
 import { EventService } from '../services/event.service';
+import { EventComponent } from '../event/event.component';
 
 @Component({
   selector: 'app-day',
@@ -15,7 +16,8 @@ import { EventService } from '../services/event.service';
   imports: [
     TaskComponent,
     CommonModule,
-    AddEventComponent
+    AddEventComponent,
+    EventComponent
   ],
   templateUrl: './day.component.html',
   styleUrl: './day.component.css'
@@ -29,6 +31,7 @@ export class DayComponent {
   state: string = 'visible';
   isHovering: boolean = false;
   currentTask?: Task;
+  currentEvent?: Event;
   showAddEvent: boolean = false;
 
   constructor(public themeService: ThemeService, private taskService: TaskService, private eventService: EventService) { }
@@ -45,20 +48,22 @@ export class DayComponent {
 
     this.eventService.getEvents().subscribe(events => {
       this.events = events.filter(event => {
-        const eventStartDate = new Date(event.startDate.setHours(0, 0, 0, 0));
-        const dayDate = new Date(this.day.date.setHours(0, 0, 0, 0));
-        return eventStartDate.getTime() === dayDate.getTime();
+        const eventStartDate = new Date(event.startDate).setHours(0, 0, 0, 0);
+        const eventEndDate = new Date(event.endDate).setHours(0, 0, 0, 0);
+        const dayDate = new Date(this.day.date).setHours(0, 0, 0, 0);
+        return dayDate >= eventStartDate && dayDate <= eventEndDate;
       });
     });
   }
 
   showTask() {
-    if (this.currentTask) {
+    if (this.currentTask || this.currentEvent) {
       this.status = !this.status;
       if (this.status) {
         this.state = 'visible';
       }
       else {
+        this.currentEvent = undefined;
         this.currentTask = undefined;
         this.state = "invisible";
       }
@@ -75,6 +80,10 @@ export class DayComponent {
 
   setCurrentTask(task: Task) {
     this.currentTask = task;
+  }
+
+  setCurrentEvent(event: Event) {
+    this.currentEvent = event;
   }
 }
 

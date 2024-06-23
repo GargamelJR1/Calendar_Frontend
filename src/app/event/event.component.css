@@ -1,0 +1,15 @@
+.event-box {
+    padding: 1px;
+    position: relative;
+    z-index: 9999;
+    cursor: pointer;
+    outline: solid 2px rgb(0, 255, 0);
+}
+
+.card-body {
+    padding: 7px;
+}
+
+.card-text {
+    margin-bottom: 7px;
+}

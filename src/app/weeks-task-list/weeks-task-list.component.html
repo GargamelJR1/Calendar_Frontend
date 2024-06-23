@@ -1,6 +1,8 @@
 <h2 class="bg-secondary rounded-1"
     [ngStyle]="this.themeService.isLightTheme() ? {'color': 'white'} :null">
     Current week</h2>
+
+
 <div *ngIf="tasksCurrentWeek.length === 0" class="alert alert-success"
     role="alert">
     Congratulations! <br> The list is empty.
@@ -8,38 +10,41 @@
 
 <div *ngIf="tasksCurrentWeek.length > 0">
     <div *ngFor="let task of tasksCurrentWeek">
-        <!-- <app-task-brief [task]="task"></app-task-brief> -->
+        <app-task-brief [task]="task"></app-task-brief>
     </div>
-    <hr>
 </div>
 <hr>
 
 <h2 class="bg-secondary rounded-1"
     [ngStyle]="this.themeService.isLightTheme() ? {'color': 'white'} :null">
     Next week</h2>
-<div *ngIf="tasksCurrentWeek.length === 0" class="alert alert-success"
+
+
+<div *ngIf="tasksNextWeek.length === 0" class="alert alert-success"
     role="alert">
     Congratulations! <br> The list is empty.
 </div>
 
-<div *ngIf="tasksCurrentWeek.length > 0">
+<div *ngIf="tasksNextWeek.length > 0">
     <div *ngFor="let task of tasksNextWeek">
-        <!-- <app-task-brief [task]="task"></app-task-brief> -->
+        <app-task-brief [task]="task"></app-task-brief>
     </div>
-    <hr>
 </div>
+<hr>
 
 <h2 class="bg-secondary rounded-1"
     [ngStyle]="this.themeService.isLightTheme() ? {'color': 'white'} :null">
     2 weeks from now</h2>
-<div *ngIf="tasksCurrentWeek.length === 0" class="alert alert-success"
+
+
+<div *ngIf="tasksTwoWeeksFromNow.length === 0" class="alert alert-success"
     role="alert">
     Congratulations! <br> The list is empty.
 </div>
 
-<div *ngIf="tasksCurrentWeek.length > 0">
+<div *ngIf="tasksTwoWeeksFromNow.length > 0">
     <div *ngFor="let task of tasksTwoWeeksFromNow">
-        <!-- <app-task-brief [task]="task"></app-task-brief> -->
+        <app-task-brief [task]="task"></app-task-brief>
     </div>
-    <hr>
-    <hr>
+</div>
+<hr>

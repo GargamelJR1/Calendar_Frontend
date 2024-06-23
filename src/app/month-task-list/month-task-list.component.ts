@@ -4,6 +4,7 @@ import { ThemeService } from '../services/theme.service';
 import { Task } from '../models/task';
 import { CommonModule } from '@angular/common';
 import { TaskBriefComponent } from '../task-brief/task-brief.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-month-task-list',
@@ -18,22 +19,25 @@ import { TaskBriefComponent } from '../task-brief/task-brief.component';
 export class MonthTaskListComponent {
   @Input() month?: number;
   tasksCurrentMonth: Task[] = [];
+  private subscription: Subscription = new Subscription();
 
   constructor(private taskService: TaskService, public themeService: ThemeService) { }
 
   ngOnInit() {
-    const month = this.month ?? new Date().getMonth();
-  this.tasksCurrentMonth = this.taskService.getTasksByDates(
-    new Date(new Date().getFullYear(), month, 1),
-    new Date(new Date().getFullYear(), month + 1, 0)
-  );
+    this.loadTasks();
   }
 
   refresh() {
+    this.loadTasks();
+  }
+
+  loadTasks() {
     const month = this.month ?? new Date().getMonth();
-    this.tasksCurrentMonth = this.taskService.getTasksByDates(
+    this.subscription.add(this.taskService.getTasksByDates(
       new Date(new Date().getFullYear(), month, 1),
       new Date(new Date().getFullYear(), month + 1, 0)
-    );
+    ).subscribe(tasks => {
+      this.tasksCurrentMonth = tasks;
+    }));
   }
 }

@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { TimeSpan } from '../models/timespan';
+import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs/internal/observable/of';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +33,7 @@ export class TaskService {
       this.tasks.next(this._tasks);
     });
   }
-  
+
   fetchTasksFromThreeMonths(timeSpan: TimeSpan) {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.post<Task[]>('/api/task/fromThreeMonths', timeSpan, { headers }).subscribe((tasks: any[]) => {
@@ -45,10 +48,10 @@ export class TaskService {
     });
   }
 
-  getTasksByDates(startDate: Date, endDate: Date): Task[] {
-    return this._tasks.filter(task => {
-      return task.deadline >= startDate && task.deadline <= endDate;
-    });
+  getTasksByDates(startDate: Date, endDate: Date): Observable<Task[]> {
+    return this.tasks.pipe(
+      map(tasks => tasks.filter(task => task.deadline >= startDate && task.deadline <= endDate))
+    );
   }
 
   addTask(task: Task) {

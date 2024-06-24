@@ -8,7 +8,8 @@ import { Task } from '../models/task';
 @Component({
   selector: 'app-grid',
   standalone: true,
-  imports: [DayComponent,
+  imports: [
+    DayComponent,
     CommonModule,
     NgFor
   ],

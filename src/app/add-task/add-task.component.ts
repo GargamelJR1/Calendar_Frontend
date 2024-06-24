@@ -19,6 +19,7 @@ export class AddTaskComponent {
   @Output() modalClosed = new EventEmitter<void>();
   @Input() master?: number;
   @Input() showAddMasterOption?: boolean;
+  deadline?: Date;
   tagsString: string = '';
 
   tasksToSelect: Task[] = [];
@@ -59,7 +60,7 @@ export class AddTaskComponent {
   }
 
   processTags(value: string): void {
-    this.newTask.tags = value.split(',').map(tag => tag.trim()); // Split by comma and trim whitespace
+    this.newTask.tags = value.split(',').map(tag => tag.trim());
   }
 
   onSubmit(): void {
@@ -67,4 +68,17 @@ export class AddTaskComponent {
     this.tasksService.addTask(this.newTask)
   }
 
+  get formattedDeadline(): string {
+    return this.formatDateToDateTimeLocal(this.newTask.deadline);
+  }
+
+  set formattedDeadline(value: string) {
+    this.newTask.deadline = new Date(value);
+  }
+
+  formatDateToDateTimeLocal(date: Date): string {
+    const offset = date.getTimezoneOffset();
+    const adjustedDate = new Date(date.getTime() - (offset * 60 * 1000));
+    return adjustedDate.toISOString().slice(0, 16);
+  }
 }

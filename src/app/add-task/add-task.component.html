@@ -49,8 +49,10 @@
           <!-- Deadline Datetime Input -->
           <div class="mb-3">
             <label for="taskDeadline" class="form-label">Deadline:</label>
+            <!-- Add a template reference variable #deadlineField -->
             <input type="datetime-local" id="taskDeadline" name="taskDeadline"
-              class="form-control" [(ngModel)]="newTask.deadline" required>
+              #deadlineField="ngModel" class="form-control"
+              [(ngModel)]="formattedDeadline" required>
           </div>
 
           <!-- Master Task Selection (Optional) -->
@@ -64,12 +66,14 @@
                 task.name }}</option>
             </select>
           </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"
             data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary"
-            [disabled]="!taskForm.valid">Save Task</button>
+            [disabled]="!taskForm.valid">Save
+            Task</button>
         </div>
       </form>
     </div>

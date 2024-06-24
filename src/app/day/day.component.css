@@ -11,4 +11,12 @@
     text-overflow: ellipsis;
     display: block;
     width: 100%;
-  }
+}
+
+.dark-text {
+    color: #000;
+}
+
+.light-text {
+    color: #fff;
+}

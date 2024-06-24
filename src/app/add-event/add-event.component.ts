@@ -85,4 +85,10 @@ export class AddEventComponent {
   processTags(value: string): void {
     this.newEvent.tags = value.split(',').map(tag => tag.trim()); // Split by comma and trim whitespace
   }
+
+  save(): void{
+    console.log(this.newEvent);
+    this.eventService.addEvent(this.newEvent);
+  }
+
 }

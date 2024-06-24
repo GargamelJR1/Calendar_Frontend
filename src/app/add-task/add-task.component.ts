@@ -61,4 +61,11 @@ export class AddTaskComponent {
   processTags(value: string): void {
     this.newTask.tags = value.split(',').map(tag => tag.trim()); // Split by comma and trim whitespace
   }
+
+  save(): void{
+  
+    console.log(this.newTask);
+    this.tasksService.addTask(this.newTask)
+  }
+
 }

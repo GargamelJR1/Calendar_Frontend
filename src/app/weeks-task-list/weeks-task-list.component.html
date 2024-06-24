@@ -11,7 +11,8 @@
 <div *ngIf="tasksCurrentWeek.length > 0">
     <div *ngFor="let task of tasksCurrentWeek">
         <app-task-brief [task]="task"></app-task-brief>
-    </div>
+        <span class="half-gap"></span>
+        </div>
 </div>
 <hr>
 
@@ -28,6 +29,7 @@
 <div *ngIf="tasksNextWeek.length > 0">
     <div *ngFor="let task of tasksNextWeek">
         <app-task-brief [task]="task"></app-task-brief>
+        <span class="half-gap"></span>
     </div>
 </div>
 <hr>
@@ -45,6 +47,7 @@
 <div *ngIf="tasksTwoWeeksFromNow.length > 0">
     <div *ngFor="let task of tasksTwoWeeksFromNow">
         <app-task-brief [task]="task"></app-task-brief>
+        <span class="half-gap"></span>
     </div>
 </div>
 <hr>

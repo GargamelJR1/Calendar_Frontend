@@ -9,6 +9,7 @@
 <div *ngIf="tasksCurrentMonth.length > 0">
     <div *ngFor="let task of tasksCurrentMonth">
         <app-task-brief [task]="task"></app-task-brief>
+        <span class="half-gap"></span>
     </div>
 </div>
 <hr>

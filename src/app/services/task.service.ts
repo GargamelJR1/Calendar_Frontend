@@ -59,9 +59,8 @@ export class TaskService {
     const taskDTO: TaskDTO = task as TaskDTO;
     taskDTO.userEmail = localStorage.getItem('email') ?? '';
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    this.http.post<Task>('/api/task/add', task, { headers }).subscribe((task: Task) => {
-      this._tasks.push(task);
-      this.tasks.next(this._tasks);
+    this.http.post<Task>('/api/task/add', task, { headers }).subscribe(() => {
+      this.fetchTasks();
     });
   }
 

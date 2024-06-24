@@ -2,3 +2,7 @@
     cursor: pointer;
     padding-top: 0px;
 }
+
+.upcoming-tasks-column {
+    min-width: 20px;
+}

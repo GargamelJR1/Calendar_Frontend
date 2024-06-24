@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="row" *ngFor="let week of month">
-        <div class="col" *ngFor="let day of week">
+        <div class="col day-column" *ngFor="let day of week">
             <app-day [day]="day"
                 [isInViewedMonth]="isInViewedMonth(day.date)"></app-day>
         </div>

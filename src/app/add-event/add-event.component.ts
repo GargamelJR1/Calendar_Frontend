@@ -86,8 +86,7 @@ export class AddEventComponent {
     this.newEvent.tags = value.split(',').map(tag => tag.trim()); // Split by comma and trim whitespace
   }
 
-  save(): void{
-    console.log(this.newEvent);
+  onSubmit(): void{
     this.eventService.addEvent(this.newEvent);
   }
 

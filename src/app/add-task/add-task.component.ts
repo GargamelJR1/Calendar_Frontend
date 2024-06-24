@@ -64,7 +64,6 @@ export class AddTaskComponent {
   }
 
   onSubmit(): void {
-    console.log(this.newTask);
     this.tasksService.addTask(this.newTask)
   }
 

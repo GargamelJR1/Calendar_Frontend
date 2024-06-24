@@ -1,77 +1,77 @@
-<!-- The Modal -->
 <div class="modal fade" id="addTaskModal" tabindex="-1"
   aria-labelledby="addTaskModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="addTaskModalLabel"
-          style="margin-bottom: 0px;">Add New Task</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"
-          aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Task Name Input -->
-        <div class="mb-3">
-          <label for="taskName" class="form-label">Task Name:</label>
-          <input type="text" id="taskName" name="taskName" class="form-control"
-            [(ngModel)]="newTask.name" placeholder="Enter task name" required>
+      <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTaskModalLabel">Add New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
         </div>
+        <div class="modal-body">
 
-        <!-- Task Description Input -->
-        <div class="mb-3">
-          <label for="taskDescription" class="form-label">Description:</label>
-          <textarea id="taskDescription" name="taskDescription"
-            class="form-control" [(ngModel)]="newTask.description"
-            placeholder="Enter task description" rows="4" required></textarea>
+          <!-- Task Name Input -->
+          <div class="mb-3">
+            <label for="taskName" class="form-label">Task Name:</label>
+            <input type="text" id="taskName" name="taskName"
+              class="form-control" [(ngModel)]="newTask.name"
+              placeholder="Enter task name" required>
+          </div>
+
+          <!-- Task Description Input -->
+          <div class="mb-3">
+            <label for="taskDescription" class="form-label">Description:</label>
+            <textarea id="taskDescription" name="taskDescription"
+              class="form-control" [(ngModel)]="newTask.description"
+              placeholder="Enter task description" rows="4" required></textarea>
+          </div>
+
+          <!-- Task Priority Selection -->
+          <div class="mb-3">
+            <label for="taskPriority" class="form-label">Priority:</label>
+            <select id="taskPriority" name="priority" class="form-select"
+              [(ngModel)]="newTask.priority" required>
+              <option value disabled selected>Select priority</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <!-- Task Tags Input -->
+          <div class="mb-3">
+            <label for="taskTags" class="form-label">Tags:</label>
+            <input type="text" id="taskTags" name="taskTags"
+              class="form-control" [(ngModel)]="tagsString"
+              (ngModelChange)="processTags($event)"
+              placeholder="Enter tags, separated by commas">
+          </div>
+
+          <!-- Deadline Datetime Input -->
+          <div class="mb-3">
+            <label for="taskDeadline" class="form-label">Deadline:</label>
+            <input type="datetime-local" id="taskDeadline" name="taskDeadline"
+              class="form-control" [(ngModel)]="newTask.deadline" required>
+          </div>
+
+          <!-- Master Task Selection (Optional) -->
+          <div class="mb-3" *ngIf="showAddMasterOption">
+            <label for="masterTask" class="form-label">Master Task
+              (Optional):</label>
+            <select id="masterTask" name="masterTask" class="form-select"
+              [(ngModel)]="newTask.master">
+              <option value selected>None</option>
+              <option *ngFor="let task of tasksToSelect" [value]="task.id">{{
+                task.name }}</option>
+            </select>
+          </div>
         </div>
-
-        <!-- Task Priority Selection -->
-        <div class="mb-3">
-          <label for="taskPriority" class="form-label">Priority:</label>
-          <select id="taskPriority" name="priority" class="form-select"
-            [(ngModel)]="newTask.priority" required>
-            <option value disabled selected>Select priority</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary"
+            [disabled]="!taskForm.valid">Save Task</button>
         </div>
-
-        <!-- Task Tags Input -->
-        <div class="mb-3">
-          <label for="taskTags" class="form-label">Tags:</label>
-          <input type="text" id="taskTags" name="taskTags" class="form-control"
-            [(ngModel)]="tagsString" (ngModelChange)="processTags($event)"
-            placeholder="Enter tags, separated by commas">
-        </div>
-
-        <!-- Deadline Datetime Input -->
-        <div class="mb-3">
-          <label for="taskDeadline" class="form-label">Deadline:</label>
-          <input type="datetime-local" id="taskDeadline" name="taskDeadline"
-            class="form-control"
-            [(ngModel)]="newTask.deadline" required>
-        </div>
-
-        <!-- Master Task Selection (Optional) -->
-        <div class="mb-3" *ngIf="this.showAddMasterOption">
-          <label for="masterTask" class="form-label">Master Task
-            (Optional):</label>
-          <select id="masterTask" name="masterTask" class="form-select"
-            [(ngModel)]="newTask.master">
-            <option value selected>None</option>
-            <option *ngFor="let task of this.tasksToSelect" [value]="task.id">{{
-              task.name
-              }}</option>
-          </select>
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-          data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="save()">Save Task</button>
-      </div>
+      </form>
     </div>
   </div>
 </div>

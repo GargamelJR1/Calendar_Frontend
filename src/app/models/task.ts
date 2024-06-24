@@ -14,3 +14,6 @@ export interface Task {
     subtasks?: Task[];
 }
 
+export interface TaskDTO extends Task {
+    userEmail: string;
+}

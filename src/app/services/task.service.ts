@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Task } from '../models/task';
+import { Task, TaskDTO } from '../models/task';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { TimeSpan } from '../models/timespan';
 import { Observable } from 'rxjs/internal/Observable';
@@ -56,6 +56,8 @@ export class TaskService {
   }
 
   addTask(task: Task) {
+    const taskDTO: TaskDTO = task as TaskDTO;
+    taskDTO.userEmail = localStorage.getItem('email') ?? '';
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.post<Task>('/api/task/add', task, { headers }).subscribe((task: Task) => {
       this._tasks.push(task);

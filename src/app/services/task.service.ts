@@ -56,6 +56,7 @@ export class TaskService {
   }
 
   addTask(task: Task) {
+    task = this.convertTaskDatesToLocal(task);
     const taskDTO: TaskDTO = task as TaskDTO;
     taskDTO.userEmail = localStorage.getItem('email') ?? '';
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
@@ -73,6 +74,7 @@ export class TaskService {
   }
 
   updateTask(task: Task) {
+    task = this.convertTaskDatesToLocal(task);
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.put<Task>('/api/task/' + task.id, task, { headers }).subscribe((task: Task) => {
       const index = this._tasks.findIndex(t => t.id === task.id);
@@ -86,5 +88,18 @@ export class TaskService {
     this.http.put<Task>(`/api/task/complete/${id}/${completed}`, {}, { headers }).subscribe(() => {
       this.fetchTasks();
     });
+  }
+
+  private convertTaskDatesToLocal(task: Task): Task {
+    if (task.deadline) {
+      task.deadline = new Date(task.deadline.getTime() - new Date().getTimezoneOffset() * 60000);
+    }
+    if (task.completeDate) {
+      task.completeDate = new Date(task.completeDate.getTime() - new Date().getTimezoneOffset() * 60000);
+    }
+    if (task.createdAt) {
+      task.createdAt = new Date(task.createdAt.getTime() - new Date().getTimezoneOffset() * 60000);
+    }
+    return task;
   }
 }

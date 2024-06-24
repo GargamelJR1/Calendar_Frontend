@@ -25,6 +25,7 @@ export class EventService {
   }
 
   addEvent(event: Event) {
+    event = this.convertEventDatesToLocal(event); // Convert dates to local before sending
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.post<Event>('/api/event/add', event, { headers }).subscribe((event: Event) => {
       this._events.push(event);
@@ -41,11 +42,22 @@ export class EventService {
   }
 
   updateEvent(event: Event) {
+    event = this.convertEventDatesToLocal(event); // Convert dates to local before sending
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.put<Event>('/api/event/' + event.id, event, { headers }).subscribe((event: Event) => {
       const index = this._events.findIndex(t => t.id === event.id);
       this._events[index] = event;
       this.events.next(this._events);
     });
+  }
+
+  private convertEventDatesToLocal(event: Event): Event {
+    if (event.startDate) {
+      event.startDate = new Date(new Date(event.startDate).getTime() - new Date().getTimezoneOffset() * 60000);
+    }
+    if (event.endDate) {
+      event.endDate = new Date(new Date(event.endDate).getTime() - new Date().getTimezoneOffset() * 60000);
+    }
+    return event;
   }
 }

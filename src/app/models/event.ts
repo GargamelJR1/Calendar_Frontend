@@ -11,3 +11,7 @@ export interface Event {
     address: string;
     color: string;
 }
+
+export interface EventDTO extends Event {
+    usersEmails: string[];
+}

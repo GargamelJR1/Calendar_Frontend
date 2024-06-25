@@ -21,9 +21,9 @@ export class AuthService {
 
   logout(): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
     return this.httpClient.get('/api/auth/logout', { headers }).pipe(tap(() => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('email');
     }));
   }
 

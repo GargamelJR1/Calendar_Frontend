@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Event } from '../models/event';
+import { Event, EventDTO } from '../models/event';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
@@ -18,7 +18,8 @@ export class EventService {
 
   fetchEvents() {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    this.http.get<Event[]>('/api/event', { headers }).subscribe((events: Event[]) => {
+    const email = localStorage.getItem('email');
+    this.http.get<Event[]>(`/api/event/user/${email}`, { headers }).subscribe((events: Event[]) => {
       this._events = events;
       this.events.next(this._events);
     });
@@ -26,6 +27,8 @@ export class EventService {
 
   addEvent(event: Event) {
     event = this.convertEventDatesToLocal(event); // Convert dates to local before sending
+    const eventDTO: EventDTO = event as EventDTO;
+    eventDTO.usersEmails = [localStorage.getItem('email') ?? ''];
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.post<Event>('/api/event/add', event, { headers }).subscribe((event: Event) => {
       this._events.push(event);

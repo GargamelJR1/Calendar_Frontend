@@ -22,7 +22,8 @@ export class TaskService {
 
   fetchTasks() {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    this.http.get<Task[]>('/api/task', { headers }).subscribe((tasks: any[]) => {
+    const email = localStorage.getItem('email');
+    this.http.get<Task[]>(`/api/task/user/${email}`, { headers }).subscribe((tasks: any[]) => {
       this._tasks = tasks.map(task => ({
         ...task,
         completed: task.completed,
@@ -35,19 +36,19 @@ export class TaskService {
     });
   }
 
-  fetchTasksFromThreeMonths(timeSpan: TimeSpan) {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    this.http.post<Task[]>('/api/task/fromThreeMonths', timeSpan, { headers }).subscribe((tasks: any[]) => {
-      this._tasks = tasks.map(task => ({
-        ...task,
-        deadline: new Date(task.deadline),
-        completeDate: task.completedAt ? new Date(task.completedAt) : undefined,
-        createdAt: task.createdAt ? new Date(task.createdAt) : undefined,
-        tags: task.tags.map((tag: { name: string }) => tag.name)
-      }));
-      this.tasks.next(this._tasks);
-    });
-  }
+  // fetchTasksFromThreeMonths(timeSpan: TimeSpan) {
+  //   const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+  //   this.http.post<Task[]>('/api/task/fromThreeMonths', timeSpan, { headers }).subscribe((tasks: any[]) => {
+  //     this._tasks = tasks.map(task => ({
+  //       ...task,
+  //       deadline: new Date(task.deadline),
+  //       completeDate: task.completedAt ? new Date(task.completedAt) : undefined,
+  //       createdAt: task.createdAt ? new Date(task.createdAt) : undefined,
+  //       tags: task.tags.map((tag: { name: string }) => tag.name)
+  //     }));
+  //     this.tasks.next(this._tasks);
+  //   });
+  // }
 
   getTasksByDates(startDate: Date, endDate: Date): Observable<Task[]> {
     return this.tasks.pipe(

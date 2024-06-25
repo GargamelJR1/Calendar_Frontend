@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Task } from '../models/task';
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
@@ -64,7 +64,7 @@ export class AddTaskComponent {
   }
 
   onSubmit(): void {
-    this.tasksService.addTask(this.newTask)
+    this.tasksService.addTask(this.newTask);
   }
 
   get formattedDeadline(): string {

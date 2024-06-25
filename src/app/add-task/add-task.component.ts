@@ -34,7 +34,7 @@ export class AddTaskComponent {
     deadline: new Date(),
     completeDate: undefined,
     createdAt: new Date(),
-    master: this.master
+    masterTask: this.master
   };
 
   constructor(private el: ElementRef, private tasksService: TaskService) { }

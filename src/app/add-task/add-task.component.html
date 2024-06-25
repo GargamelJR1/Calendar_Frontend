@@ -60,7 +60,7 @@
             <label for="masterTask" class="form-label">Master Task
               (Optional):</label>
             <select id="masterTask" name="masterTask" class="form-select"
-              [(ngModel)]="newTask.master">
+              [(ngModel)]="newTask.masterTask">
               <option value selected>None</option>
               <option *ngFor="let task of tasksToSelect" [value]="task.id">{{
                 task.name }}</option>

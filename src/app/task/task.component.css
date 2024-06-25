@@ -18,3 +18,12 @@
 .card-text {
     margin-bottom: 7px;
 }
+
+.subtasks-label {
+    margin-bottom: 0;
+}
+
+.subtasks-list {
+    padding-top: 0;
+    margin-bottom: 0;
+}

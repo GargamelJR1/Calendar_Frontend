@@ -10,8 +10,8 @@ export interface Task {
     deadline: Date;
     completeDate?: Date;
     createdAt?: Date;
-    master?: number;
-    subtasks?: Task[];
+    masterTask?: number;
+    subTasks?: Task[];
 }
 
 export interface TaskDTO extends Task {

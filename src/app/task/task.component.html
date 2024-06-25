@@ -10,15 +10,15 @@
         <p class="card-text" *ngIf="task.tags && task.tags.length > 0">Tags: {{task.tags.join(', ')}}</p>
         <p class="card-text" *ngIf="task.completeDate">Complete Date: {{task.completeDate | date:'mediumDate'}}</p>
         <p class="card-text" *ngIf="task.createdAt">Created At: {{task.createdAt | date:'mediumDate'}}</p>
-        <p class="card-text" *ngIf="task.master">Master Task ID: {{task.master}}</p>
-        <div *ngIf="task.subtasks && task.subtasks.length > 0">
-            <p class="card-text">Subtasks:</p>
-            <ul>
-                <li *ngFor="let subtask of task.subtasks">{{subtask.name}}</li>
+        <p class="card-text" *ngIf="task.masterTask">Master Task ID: {{task.masterTask}}</p>
+        <div *ngIf="task.subTasks && task.subTasks.length > 0">
+            <p class="card-text subtasks-label">Subtasks:</p>
+            <ul class="subtasks-list">
+                <li *ngFor="let subtask of task.subTasks">{{subtask.name}}</li>
             </ul>
         </div>
         <!-- Button to add subtasks -->
-        <button type="button btn-small" class="btn btn-secondary btn-sm" (click)="this.showAddTask=true">Add Subtask</button>
+        <!-- <button type="button btn-small" class="btn btn-secondary btn-sm" (click)="this.showAddTask=true">Add Subtask</button> -->
     </div>
 </div>
-<app-add-task [master]="task?.id" *ngIf="this.showAddTask" (modalClosed)="this.showAddTask=false"></app-add-task>
+<!-- <app-add-task [master]="task?.id" *ngIf="this.showAddTask" (modalClosed)="this.showAddTask=false"></app-add-task> -->

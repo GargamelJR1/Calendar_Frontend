@@ -36,8 +36,7 @@ export class EventService {
     eventDTO.usersEmails = [localStorage.getItem('email') ?? ''];
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     this.http.post<Event>('/api/event/add', event, { headers }).subscribe((event: Event) => {
-      this._events.push(event);
-      this.events.next(this._events);
+      this.fetchEvents();
     });
   }
 

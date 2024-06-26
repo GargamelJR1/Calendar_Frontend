@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-10 align-items-center">
             <div class="row">
-                <div class="col-2 text-left">
+                <div class="col-3 text-left">
                     <div style="font-size: xx-large;"><b>{{year}}</b></div>
                 </div>
-                <div class="col-8">
+                <div class="col-6">
                     <div
                         class="d-flex justify-content-center align-items-center">
                         <mat-icon (click)="decMonth()"
@@ -16,7 +16,20 @@
                             class="chevron">chevron_right</mat-icon>
                     </div>
                 </div>
-                <div class="col-2 text-right"
+                <div class="col-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            placeholder="Search by tags ..." aria-label="Search"
+                            [(ngModel)]="searchQuery">
+                        <button class="btn btn-outline-secondary" type="button"
+                            *ngIf="searchQuery" (click)="searchQuery=''">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                        <span class="input-group-text" id="basic-addon2"><i
+                                class="bi bi-search"></i></span>
+                    </div>
+                </div>
+                <div class="col-1 text-right"
                     style="display: flex; justify-content: flex-end;">
                     <button class="btn btn-primary"
                         style="padding-top: 1px; padding-bottom: 1px; margin-top: -4px; margin-bottom: -4px;"
@@ -25,7 +38,10 @@
                 </div>
             </div>
             <hr>
-            <app-grid [year]="year" [monthNumber]="month"></app-grid>
+            <app-grid [year]="year" [monthNumber]="month"
+                *ngIf="!searchQuery"></app-grid>
+            <app-searched-list [searchTag]="searchQuery"
+                *ngIf="searchQuery"></app-searched-list>
         </div>
         <div class="col align-items-center upcoming-tasks-column">
             <div style="text-align: center;">
@@ -46,11 +62,13 @@
                     <app-weeks-task-list></app-weeks-task-list>
                 </div>
                 <div *ngIf="selectedOption === 'currentMonth'">
-                    <app-month-task-list #monthTaskList [month]="this.month"></app-month-task-list>
+                    <app-month-task-list #monthTaskList
+                        [month]="this.month"></app-month-task-list>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <app-add-task *ngIf="this.showAddTask"
-    (modalClosed)="this.showAddTask=false" [showAddMasterOption]="true"></app-add-task>
+    (modalClosed)="this.showAddTask=false"
+    [showAddMasterOption]="true"></app-add-task>

@@ -10,6 +10,7 @@ import { MonthTaskListComponent } from '../month-task-list/month-task-list.compo
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskService } from '../services/task.service';
 import { EventService } from '../services/event.service';
+import { SearchedListComponent } from '../searched-list/searched-list.component';
 
 @Component({
   selector: 'app-calendar',
@@ -23,7 +24,8 @@ import { EventService } from '../services/event.service';
     MatIconModule,
     WeeksTaskListComponent,
     MonthTaskListComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    SearchedListComponent
   ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
@@ -32,6 +34,7 @@ export class CalendarComponent {
   @ViewChild('monthTaskList') monthTaskListComponent!: MonthTaskListComponent;
   selectedOption: string = 'nextWeeks';
   showAddTask: boolean = false;
+  searchQuery: string = '';
 
   year: number = new Date().getFullYear();
   month: number = new Date().getMonth();

@@ -19,8 +19,13 @@ export class EventService {
   fetchEvents() {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     const email = localStorage.getItem('email');
-    this.http.get<Event[]>(`/api/event/user/${email}`, { headers }).subscribe((events: Event[]) => {
-      this._events = events;
+    this.http.get<Event[]>(`/api/event/user/${email}`, { headers }).subscribe((events: any[]) => {
+      this._events = events.map(event => ({
+        ...event,
+        startDate: new Date(event.startDate),
+        endDate: new Date(event.endDate),
+        tags: event.tags.map((tag: { name: string }) => tag.name)
+      }));
       this.events.next(this._events);
     });
   }

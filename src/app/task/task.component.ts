@@ -16,8 +16,4 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 export class TaskComponent {
   @Input() task?: Task;
   // showAddTask: boolean = false;
-
-  ngOnInit(): void {
-    console.log(this.task);
-  }
 }

@@ -42,7 +42,9 @@
                     <div class="mb-3">
                         <label for="eventEndDate" class="form-label">End
                             Date:</label>
-                        <!-- Assuming the end date input will be added here -->
+                            <input type="datetime-local" id="eventStartDate"
+                            name="eventStartDate" class="form-control"
+                            [(ngModel)]="formattedEndDate" required>
                     </div>
                     <!-- Tags Input -->
                     <div class="mb-3">

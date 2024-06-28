@@ -1,31 +1,34 @@
-# CalendarFrontend
+# Calendar
 
-## Run project
+### Projekt Prgramistyczny
 
-To run project you need to install node.js, npm, Angular first. Then clone this repo and run command inside its dir "npm install". After doing that you can run app by executing command "ng serve".
+Program zarządzania czasem z możliwością tworzenia tasków i eventów.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
+### Instrukcja uruchomienia
 
-## Development server
+1. Pobrać repozytoria  
+   https://github.com/GargamelJR1/Calendar_Frontend  
+   https://github.com/GargamelJR1/Calendar_Backend
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+2. W folderze Calendar_Backend uruchomić terminal i wykonać komendy  
+   Uruchomić docker  
+   `docker compose -f composeA.yaml build`  
+   `docker compose -f composeA.yaml up`  
+   Po każdej komendzie odczekać na jej wykonanie
 
-## Code scaffolding
+3. W folderze Calendar_Frontend uruchomić nowy terminal i wykonać komendy
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   #### Wymagane aplikacje:
 
-## Build
+   - Node.js https://nodejs.org/en
+   - Npm `npm install -g npm`
+   - Angular `npm install -g @angular/cli@17`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   #### Uruchamianie
 
-## Running unit tests
+   `npm instll` (Wykonaj tylko za pierwszym razem lub po dodaniu paczki)  
+   `ng serve`  
+   Po każdej komendzie odczekać na jej wykonanie  
+   Strona internetowa uruchomi się pod adresem http://localhost:4200/
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+W tym momencie aplikacja jest w pełni funkcjonalna.

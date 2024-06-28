@@ -35,6 +35,7 @@ export class CalendarComponent {
   selectedOption: string = 'nextWeeks';
   showAddTask: boolean = false;
   searchQuery: string = '';
+  toasts: any[] = [];
 
   year: number = new Date().getFullYear();
   month: number = new Date().getMonth();
@@ -83,6 +84,25 @@ export class CalendarComponent {
 
   ngOnInit() {
     this.fetchTasksAndEvents();
+
+    this.toasts = [];
+    this.taskService.getTasks().subscribe(tasks => {
+      for (let task of tasks) {
+        if (task.deadline >= new Date() && task.deadline <= new Date(new Date().setDate(new Date().getDate() + 3))) {
+          const newToast = {
+            header: 'Task Deadline',
+            body: task.name + ' is due on ' + task.deadline.toDateString() + '.',
+            show: true
+          };
+          this.toasts.push(newToast);
+
+          // Automatically hide the toast after 5 seconds
+          setTimeout(() => {
+            this.hideToast(newToast);
+          }, 3000);
+        }
+      }
+    });
   }
 
   getMonth() {
@@ -114,5 +134,9 @@ export class CalendarComponent {
       default:
         return '';
     }
+  }
+
+  hideToast(toast: any) {
+    toast.show = false;
   }
 }

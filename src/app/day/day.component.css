@@ -24,3 +24,7 @@
 /* .day-box > div {
     overflow: hidden;
 } */
+
+.icon-adjust {
+    transform: translateY(-4px); /* Adjust the pixel value as needed */
+}

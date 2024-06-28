@@ -6,3 +6,33 @@
 .upcoming-tasks-column {
     min-width: 20px;
 }
+
+.toast-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.toast {
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    transform: translateY(100%);
+    opacity: 0;
+    max-width: 300px;
+    font-size: medium;
+    padding: 0.1rem;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

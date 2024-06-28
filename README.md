@@ -1,5 +1,9 @@
 # CalendarFrontend
 
+## Run project
+
+To run project you need to install node.js, npm, Angular first. Then clone this repo and run command inside its dir "npm install". After doing that you can run app by executing command "ng serve".
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
 
 ## Development server

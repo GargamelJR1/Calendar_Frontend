@@ -12,7 +12,6 @@ Program zarządzania czasem z możliwością tworzenia tasków i eventów.
 
 2. W folderze Calendar_Backend uruchomić terminal i wykonać komendy  
    Uruchomić docker  
-   `docker compose -f composeA.yaml build`  
    `docker compose -f composeA.yaml up`  
    Po każdej komendzie odczekać na jej wykonanie
 
@@ -21,12 +20,12 @@ Program zarządzania czasem z możliwością tworzenia tasków i eventów.
    #### Wymagane aplikacje:
 
    - Node.js https://nodejs.org/en
-   - Npm `npm install -g npm`
+   - Npm (Windows - instalowana razem z Node.js)
    - Angular `npm install -g @angular/cli@17`
 
    #### Uruchamianie
 
-   `npm instll` (Wykonaj tylko za pierwszym razem lub po dodaniu paczki)  
+   `npm install` (Wykonaj tylko za pierwszym razem lub po dodaniu paczki)  
    `ng serve`  
    Po każdej komendzie odczekać na jej wykonanie  
    Strona internetowa uruchomi się pod adresem http://localhost:4200/

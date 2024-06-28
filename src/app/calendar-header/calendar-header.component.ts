@@ -17,6 +17,7 @@ export class CalendarHeaderComponent {
 
   logout() {
     this.authService.logout().subscribe((resp) => { });
+    window.location.reload();
   }
 
   isLoggedIn() {
